@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1518979986380765309}
-  - component: {fileID: 7720988578624573530}
+  - component: {fileID: -2859644486668712939}
   m_Layer: 0
-  m_Name: RocketSpawner
+  m_Name: LaserSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7720988578624573530
+--- !u!114 &-2859644486668712939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6465389060563490608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0300664263b4a44bcb93a67869f534, type: 3}
+  m_Script: {fileID: 11500000, guid: c8a3e8533c82980488324e88fa0c369b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketObject: {fileID: 1259865673663102, guid: f854bf5d129fd124b9073baa8dcbbaa2, type: 3}
-  rocketSpawner: {fileID: 6465389060563490608}
+  laserObject: {fileID: 1073547774997498612, guid: fc4f3309cd8c89b4b8917fede3e4bf2e, type: 3}
+  laserSpawner: {fileID: 6465389060563490608}

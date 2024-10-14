@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomSpawner : MonoBehaviour
+public class RocketSpawner : MonoBehaviour
 {
 
-    public GameObject boomrocket;
-    public GameObject boomspawner;
+    public GameObject rocketObject;
+    public GameObject rocketSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class BoomSpawner : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.R)) 
         { 
-            Instantiate(boomrocket, boomspawner.transform.position, boomspawner.transform.rotation);
+            Instantiate(rocketObject, rocketSpawner.transform.position, rocketSpawner.transform.rotation);
         }
     }
 }
