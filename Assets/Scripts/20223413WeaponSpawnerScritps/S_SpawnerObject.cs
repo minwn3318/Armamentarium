@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class S_SpawnerObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject _object;
+    public GameObject spawner;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonUp(0))
+        {
+            Instantiate(_object, spawner.transform.position, spawner.transform.rotation);
+        }
     }
 }

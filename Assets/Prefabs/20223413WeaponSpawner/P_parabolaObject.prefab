@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 33103492060616766}
   - component: {fileID: 23995889283645208}
   - component: {fileID: 2294497713600851760}
-  - component: {fileID: 7373984719890649315}
+  - component: {fileID: 3614318828987988978}
   m_Layer: 0
   m_Name: P_parabolaObject
   m_TagString: Untagged
@@ -199,7 +199,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7373984719890649315
+--- !u!114 &3614318828987988978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,9 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b1006147483bc4db6fbc2f9e1f03b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDistance: 10
+  initialSpeed: 10
   launchAngle: 45
   gravity: -9.81
+  settingTime: 2.5
 --- !u!1 &3077601612920917623
 GameObject:
   m_ObjectHideFlags: 0

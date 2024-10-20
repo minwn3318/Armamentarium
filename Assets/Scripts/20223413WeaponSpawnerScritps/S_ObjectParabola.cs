@@ -17,6 +17,7 @@ public class S_ObjectParabola : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         LaunchProjectile();
+        Destroy(gameObject, 3f);
     }
 
     void LaunchProjectile()
@@ -25,11 +26,11 @@ public class S_ObjectParabola : MonoBehaviour
         float launchAngleRad = launchAngle * Mathf.Deg2Rad;
 
         // 초기 속도의 X와 Y 성분 계산
-        float xVelocity = initialSpeed * Mathf.Cos(launchAngleRad);
+        float zVelocity = initialSpeed * Mathf.Cos(launchAngleRad);
         float yVelocity = initialSpeed * Mathf.Sin(launchAngleRad);
 
         // Rigidbody에 초기 속도 적용
-        velocity = new Vector3(xVelocity, yVelocity, 0);
+        velocity = new Vector3(0, yVelocity, zVelocity);
         rb.velocity = velocity;
         Debug.Log("startlanch");
         StartCoroutine(RotateObject());
@@ -42,11 +43,11 @@ public class S_ObjectParabola : MonoBehaviour
         {
             // 매 프레임 중력 적용
             velocity.y += gravity * Time.deltaTime; // 중력 효과 적용
-            rb.velocity = new Vector3(velocity.x, velocity.y, 0);
+            rb.velocity = new Vector3(0, velocity.y, velocity.z);
 
             // 발사체의 각도 업데이트
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle); // Y축을 기준으로 회전
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.z) * Mathf.Rad2Deg; // 각도 계산
+            transform.rotation = Quaternion.Euler(-angle, 0, 0); // Y축을 기준으로 회전
 
             initTime += Time.deltaTime;
 
