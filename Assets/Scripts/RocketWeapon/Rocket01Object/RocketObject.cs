@@ -5,11 +5,25 @@ using UnityEngine;
 
 public class RocketObject : ParentsObject
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        SetForce(3000);
-        SetTime(1f);
-    }
+        try
+        {
+            if (spawnerObj == null)
+            {
+                throw new NullReferenceException("someObject is not assigned in the Inspector!");
+            }
 
+            InitComp();
+            SetForce(200);
+            SetLifeTime(1f);
+
+        }
+        catch (NullReferenceException ex)
+        {
+            Debug.LogError("Exception occurred: " + ex.Message);
+            Application.Quit(); // 강제 종료
+        }
+
+    }
 }

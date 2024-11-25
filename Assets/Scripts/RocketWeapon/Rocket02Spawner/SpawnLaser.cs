@@ -1,13 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerRocket : ParentSpawner
+
+public  class SpawnLaser : ParentSpawner
 {
     public void Awake()
     {
-        SetPoolSize(10);
-        SetCoolTime(0.5f);
+        SetPoolSize(1);
+        SetCoolTime(2f);
         SetFireAva();
         CreatePool();
     }
@@ -20,3 +21,4 @@ public class SpawnerRocket : ParentSpawner
         }
     }
 }
+
