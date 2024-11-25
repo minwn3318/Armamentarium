@@ -48,6 +48,7 @@ public class ParentSpawner : MonoBehaviour
             Debug.Log("can Fire");
             GameObject obj = GetPool();
             Debug.Log(obj);
+            Debug.Log(pool.Count);
 
             obj.SetActive(true);
             obj.transform.position = transform.position;
