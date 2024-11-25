@@ -9,14 +9,22 @@ public class SpawnerRocket : ParentSpawner
         SetPoolSize(10);
         SetCoolTime(0.5f);
         SetFireAva();
+        SetLifeTime(1f);
         CreatePool();
     }
 
     public void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) & GetFireBool())
         {
             Fire();
         }
     }
+
+    public override void MoveObj(GameObject obj)
+    {
+        RocketObject shootedObj = obj.GetComponent<RocketObject>();
+        shootedObj.Launch();
+    }
+
 }

@@ -6,11 +6,15 @@ using UnityEngine;
 public class ParentSpawner : MonoBehaviour
 {
     public GameObject prefabObj;
-    public Queue<GameObject> pool;
+
+    private Queue<GameObject> pool;
 
     private int poolSize;
     private float fireCoolTime;
     private bool canFire;
+
+    private float objectLife;
+
 
     public virtual void SetPoolSize(int size)
     {
@@ -27,6 +31,22 @@ public class ParentSpawner : MonoBehaviour
         canFire = true;
     }
 
+    public virtual bool GetFireBool()
+    {
+        return canFire; 
+    }
+    public virtual void SetLifeTime(float time)
+    {
+        objectLife = time;
+    }
+
+    public virtual float GetLifeTime()
+    {
+        return objectLife;
+    }
+
+    // 큐 생성
+    // 오브제 발사행위
     public virtual void CreatePool()
     {
         pool = new Queue<GameObject>(poolSize);
@@ -43,27 +63,33 @@ public class ParentSpawner : MonoBehaviour
     }
     public virtual void Fire()
     {
-        if (canFire)
-        {
-            Debug.Log("can Fire");
-            GameObject obj = GetPool();
-            Debug.Log(obj);
-            Debug.Log(pool.Count);
+        GameObject popObj = GetPoolObj();
 
-            obj.SetActive(true);
-            obj.transform.position = transform.position;
-            obj.transform.rotation = transform.rotation;
+        SetObjVec(popObj);
 
-            ParentsObject shootedObj = obj.GetComponent<ParentsObject>();
-            Debug.Log("right"+shootedObj);
-            shootedObj.Launch();
-            //StartCoroutine(FireCooldown());
-
-        }
+        MoveObj(popObj);
+        StartCoroutine(ReturnObj(popObj));
+        StartCoroutine(FireCooldown());
     }
-    public virtual GameObject GetPool()
+
+    // 오브제 회전
+    // 오브제 움직임
+    public virtual void SetObjVec(GameObject obj)
     {
-        // 풀에 사용 가능한 탄환이 있는 경우
+        obj.SetActive(true);
+        obj.transform.position = transform.position;
+        obj.transform.rotation = transform.rotation;
+    }
+    public virtual void MoveObj(GameObject obj)
+    {
+        ParentsObject shootedObj = obj.GetComponent<ParentsObject>();
+        shootedObj.Launch();
+    }
+
+    // 큐에서 꺼내기
+    // 조건에 맞추어 다시 큐 풀링(넣기)
+    public virtual GameObject GetPoolObj()
+    {
         if (pool.Count > 0)
         {
             Debug.Log("get");
@@ -72,26 +98,22 @@ public class ParentSpawner : MonoBehaviour
         else
         {
             Debug.Log("create get");
-            // 풀이 비어 있으면 새 탄환 생성
-            GameObject bullet = Instantiate(prefabObj);
-            return bullet;
+            return Instantiate(prefabObj);
         }
+
     }
-    public virtual void ReturnPool(GameObject obj)
+    public virtual IEnumerator ReturnObj(GameObject obj)
     {
-        Debug.Log(pool);
-        Debug.Log("bye");
+        yield return new WaitForSeconds(objectLife);
         pool.Enqueue(obj);
         obj.SetActive(false);
-        Debug.Log("now" + pool.Count);
     }
 
-    public IEnumerator FireCooldown()
+    //발사 쿨타임
+    public virtual IEnumerator FireCooldown()
     {
         canFire = false;
-        Debug.Log("cool"+canFire);
         yield return new WaitForSeconds(fireCoolTime);
         canFire = true;
-        Debug.Log("cool"+canFire);
     }
 }

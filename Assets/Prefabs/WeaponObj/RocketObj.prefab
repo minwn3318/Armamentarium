@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7742089116476202102}
   - component: {fileID: 2374269529498937415}
+  - component: {fileID: 6743129039115115545}
   - component: {fileID: 2497321002000491767}
   - component: {fileID: 8564716037596063255}
   - component: {fileID: 6874811128106995789}
-  - component: {fileID: 6743129039115115545}
   m_Layer: 0
   m_Name: RocketObj
   m_TagString: Untagged
@@ -44,6 +44,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4212428584820385122}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6743129039115115545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212428584820385122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fb8617b46d4c54ab318d2cd9f8c844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spw: {fileID: 4404686164534392339, guid: aa3bb5fd5971801429f699c3ade1fa3d, type: 3}
+  spwClass: {fileID: 0}
 --- !u!23 &2497321002000491767
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134,16 +148,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6743129039115115545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212428584820385122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38fb8617b46d4c54ab318d2cd9f8c844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnerObj: {fileID: 4404686164534392339, guid: aa3bb5fd5971801429f699c3ade1fa3d, type: 3}
