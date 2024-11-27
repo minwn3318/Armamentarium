@@ -21,6 +21,7 @@ public class SpawnerParabola : ParentSpawner
         }
     }
 
+    // 오브제의 위치 및 방향 오버라이딩 -> 포물선 궤도에 맞게 위치 및 방향, 초기 속도 설정
     public override void SetObjVec(GameObject obj)
     {
         ParabolaObject parabol = obj.GetComponent<ParabolaObject>();
@@ -44,6 +45,7 @@ public class SpawnerParabola : ParentSpawner
         // 운동 플래그 활성화
         parabol.SetMovBool(false);
     }
+    // 오브제를 발사해서 움직임 오버라이딩 -> 오브젝트가 포물선 운동하는 동안 방향 조정
     public override void MoveObj(GameObject obj)
     {
         ParabolaObject parabol = obj.GetComponent<ParabolaObject>();

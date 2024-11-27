@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ParabolaObject : ParentsObject
 {
-    private float gravity = -9.8f;    // 중력 값
-    private Vector3 velocity;        // 현재 속도
-    private bool isMoving = false;   // 운동 상태 플래그
+    // 중력 값
+    private float gravity = -9.8f;
+    // 현재 속도
+    private Vector3 velocity;
+    // 운동 상태 플래그
+    private bool isMoving = false;   
 
     private void Awake()
     {
@@ -15,16 +18,19 @@ public class ParabolaObject : ParentsObject
         StartCoroutine(ParabolicUpdate());
     }
 
+    // 속도 설정
     public void SetVelocity(Vector3 vel) 
     { 
         velocity = vel; 
     }
 
+    // 움직임 부울 설정
     public void SetMovBool(bool b)
     {
         isMoving = b;
     }
 
+    // 물체의 포물선 궤도 운동
     public IEnumerator ParabolicUpdate()
     {
         Vector3 position = transform.position;
