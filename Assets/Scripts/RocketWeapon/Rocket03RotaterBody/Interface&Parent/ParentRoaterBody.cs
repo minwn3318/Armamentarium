@@ -28,6 +28,7 @@ public class ParentRoaterBody : MonoBehaviour
         horizontalAngle += mouseX * horizontalSpeed;
         horizontalAngle = Mathf.Clamp(horizontalAngle, -horizontalLimit, horizontalLimit);
 
+        // 수직 각도 계산 및 범위 제한
         verticalAngle += mouseWheel * verticalSpeed * 10f;
         verticalAngle = Mathf.Clamp(verticalAngle, 0, verticalLimit);
 
