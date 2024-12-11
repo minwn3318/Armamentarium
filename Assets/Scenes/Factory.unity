@@ -166,9 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33dda40c8c90c1d44b08264cec637a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalBlock: {fileID: 5725927187308930332, guid: a74afc10135672e47b1081a1694c832c, type: 3}
-  woodenBlock: {fileID: 9156348826395541636, guid: 264c0d40e950139429fe4df65bd8e72f, type: 3}
-  metalicBlock: {fileID: 3884071388837516005, guid: ebdf50e3d43035945922aa71f3502eb0, type: 3}
+  blockNormal: {fileID: 5725927187308930332, guid: a74afc10135672e47b1081a1694c832c, type: 3}
+  blockWoodden: {fileID: 9156348826395541636, guid: 264c0d40e950139429fe4df65bd8e72f, type: 3}
+  blockMetalic: {fileID: 3884071388837516005, guid: ebdf50e3d43035945922aa71f3502eb0, type: 3}
+  wheelWooden: {fileID: 2167445413117595994, guid: 56fe1fb1d1d49a54bb580fc3bcc9b3cd, type: 3}
+  weaponBallista: {fileID: 1802012225763966479, guid: 14cb3b43797b8754ab2d8bf1cd988921, type: 3}
+  weaponCannon: {fileID: 3874642789829628974, guid: 047f1f8c17174d346b11571629321a13, type: 3}
   theCamera: {fileID: 1172511465}
 --- !u!1 &805873564
 GameObject:
@@ -270,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 805873564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -577,7 +580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863442143020426953, guid: 99c62d05373a2854db599e043ac063f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4863442143020426953, guid: 99c62d05373a2854db599e043ac063f5, type: 3}
       propertyPath: m_LocalPosition.z
