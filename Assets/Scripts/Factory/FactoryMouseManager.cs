@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class FactoryMouseManager : MonoBehaviour
 {
-    public GameObject normalBlock;
-    public GameObject woodenBlock;
-    public GameObject metalicBlock;
+    public GameObject blockNormal;
+    public GameObject blockWoodden;
+    public GameObject blockMetalic;
+    public GameObject wheelWooden;
+    public GameObject weaponBallista;
+    public GameObject weaponCannon;
 
     private GameObject selectedBlock; //선택된 블록
 
@@ -17,7 +20,7 @@ public class FactoryMouseManager : MonoBehaviour
     void Start()
     {
         coreGearTransform = GameObject.FindWithTag("CoreGear").transform;
-        selectedBlock = normalBlock;
+        selectedBlock = blockNormal;
     }
 
     // Update is called once per frame
@@ -36,6 +39,21 @@ public class FactoryMouseManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo))
             {
+                if (hitInfo.collider.gameObject.name.Contains("Wheel_Wooden_01"))
+                {
+                    Debug.Log("Cannot place blocks on Wooden Wheel");
+                    return;
+                }
+                if (hitInfo.collider.gameObject.name.Contains("Weapon_Ballista_01"))
+                {
+                    Debug.Log("Cannot place blocks on Weapon Ballista");
+                    return;
+                }
+                if (hitInfo.collider.gameObject.name.Contains("Weapon_Cannon_01"))
+                {
+                    Debug.Log("Cannot place blocks on Weapon Ballista");
+                    return;
+                }
                 Vector3 spawnspot = hitInfo.collider.transform.position + hitInfo.normal;
                 Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.forward, hitInfo.normal);
 
@@ -65,20 +83,35 @@ public class FactoryMouseManager : MonoBehaviour
         // 1번키 누르면 기본블럭
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            selectedBlock = normalBlock;
+            selectedBlock = blockNormal;
             Debug.Log("Normal block selected");
         }
         // 2번키 누르면 나무블럭
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            selectedBlock = woodenBlock;
+            selectedBlock = blockWoodden;
             Debug.Log("Wooden block selected");
         }
         // 2번키 누르면 철블럭
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            selectedBlock = metalicBlock;
+            selectedBlock = blockMetalic;
             Debug.Log("Metalic block selected");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            selectedBlock = wheelWooden;
+            Debug.Log("Wooden wheel selected");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            selectedBlock = weaponBallista;
+            Debug.Log("Weapon ballista selected");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6)) 
+        {
+            selectedBlock = weaponCannon;
+            Debug.Log("Weapon cannon selected");
         }
     }
 }
