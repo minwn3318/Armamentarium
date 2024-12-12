@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6261863285753746237}
   - component: {fileID: 8778347023858261693}
   m_Layer: 0
-  m_Name: parabolaObj
+  m_Name: ParabolaObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
