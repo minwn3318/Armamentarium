@@ -10,6 +10,7 @@ public class SpawnerRocket : ParentSpawner
         SetCoolTime(0.5f);
         SetFireAva();
         SetLifeTime(1f);
+        SetDistance(2.5f);
         CreatePool();
     }
 

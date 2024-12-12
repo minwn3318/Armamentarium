@@ -13,7 +13,7 @@ public class ParabolaObject : ParentsObject
 
     private void Awake()
     {
-        SetForce(10f);
+        SetForce(9.8f);
         SetMovBool(false);
         StartCoroutine(ParabolicUpdate());
     }

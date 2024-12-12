@@ -9,10 +9,11 @@ public class SpawnLaser : ParentSpawner
     private GameObject shootedLaser;
     public void Awake()
     {
-        shootedLaser = Instantiate(prefabObj, transform.position, transform.rotation);
         SetCoolTime(2f);
         SetFireAva();
         SetLifeTime(1.5f);
+        SetDistance(32f);
+        shootedLaser = Instantiate(prefabObj, transform.forward * GetDistance(), transform.rotation);
         shootedLaser.SetActive(false);
     }
 
@@ -38,7 +39,17 @@ public class SpawnLaser : ParentSpawner
 
     public override IEnumerator ReturnObj(GameObject obj)
     {
-        yield return new WaitForSeconds(GetLifeTime());
+        float v_elapsedTime = 0f;
+        float v_coolTime = GetCoolTime();
+        float v_distance = GetDistance();
+
+        while (v_elapsedTime < v_coolTime)
+        {
+            obj.transform.position = transform.position + transform.forward * v_distance;
+            obj.transform.rotation = transform.rotation;
+            v_elapsedTime += Time.deltaTime;
+            yield return null;
+        }
         obj.SetActive(false);
     }
 }
