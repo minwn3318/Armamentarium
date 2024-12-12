@@ -9,7 +9,7 @@ public class SpawnerParabola : ParentSpawner
         SetPoolSize(10);
         SetCoolTime(2f);
         SetFireAva();
-        SetLifeTime(5f);
+        SetLifeTime(3f);
         SetDistance(2.5f);
         CreatePool();
     }
@@ -31,25 +31,21 @@ public class SpawnerParabola : ParentSpawner
         obj.transform.position = transform.position + transform.forward * GetDistance();
 
         // forward 벡터와 월드 up 벡터 사이의 각도 계산
-        float angle = Vector3.Angle(transform.forward, Vector3.ProjectOnPlane(transform.forward, Vector3.up));
-        Debug.Log("angle : " + angle);
-
+        float angle = Vector3.SignedAngle(transform.forward, Vector3.ProjectOnPlane(transform.forward, Vector3.up), Vector3.up);
         // 각도를 라디안으로 변환
         float radian = angle * Mathf.Deg2Rad;
-        Debug.Log("radin : " + radian);
+
+        // 오브젝트의 발사 방향
+        Vector3 forwardDirection = transform.forward;
+        Debug.Log("forwarddirection : " + forwardDirection);
 
         // 초기 속도 설정
-        float horizontalSpeed =  Mathf.Cos(radian); // 수평 성분
-        Debug.Log("horizontalSpeed x : " + horizontalSpeed);
-
-        float verticalSpeed =  Mathf.Sin(radian);   // 수직 성분
-        Debug.Log("verticalSpeed y : " + verticalSpeed);
+        float horizontalSpeed = Mathf.Cos(radian); // 수평 성분
+        float verticalSpeed = Mathf.Sin(radian);   // 수직 성분;
 
         // 속도 벡터 계산
-        Vector3 vel = transform.forward.normalized * horizontalSpeed * parabol.GetForce() 
-            + transform.up.normalized * verticalSpeed * parabol.GetForce();
+        Vector3 vel = forwardDirection * horizontalSpeed * verticalSpeed * parabol.GetForce() * parabol.GetForce() ;
 
-        Debug.Log("vel : " + vel);
         parabol.SetVelocity(vel); 
 
         // 운동 플래그 활성화
