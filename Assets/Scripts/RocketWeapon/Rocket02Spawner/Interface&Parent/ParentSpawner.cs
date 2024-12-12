@@ -72,7 +72,6 @@ public class ParentSpawner : MonoBehaviour
     {
         // 풀에서 꺼내기
         GameObject popObj = GetPoolObj();
-
         // 오브제의 위치 및 방향을 현재 스포너의 벡터에 맞게 설정
         SetObjVec(popObj);
         // 오브제를 움직이게 함
@@ -97,6 +96,11 @@ public class ParentSpawner : MonoBehaviour
 
     }
 
+    public virtual void PushPoolObj(GameObject obj)
+    {
+        pool.Enqueue(obj);
+    }
+
     // 오브제의 위치 및 방향을 현재 스포너의 벡터에 맞게 설정
     public virtual void SetObjVec(GameObject obj)
     {
@@ -115,7 +119,7 @@ public class ParentSpawner : MonoBehaviour
     public virtual IEnumerator ReturnObj(GameObject obj)
     {
         yield return new WaitForSeconds(GetLifeTime());
-        pool.Enqueue(obj);
+        PushPoolObj(obj);
         obj.SetActive(false);
     }
 

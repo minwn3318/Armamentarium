@@ -9,12 +9,12 @@ public class SpawnLaser : ParentSpawner
     private GameObject shootedLaser;
     public void Awake()
     {
+        SetPoolSize(1);
         SetCoolTime(2f);
         SetFireAva();
         SetLifeTime(1.5f);
         SetDistance(32f);
-        shootedLaser = Instantiate(prefabObj, transform.forward * GetDistance(), transform.rotation);
-        shootedLaser.SetActive(false);
+        CreatePool();
     }
 
     public void Update()
@@ -29,10 +29,12 @@ public class SpawnLaser : ParentSpawner
     // 오브제를 풀에서 꺼내 발사하는 함수 오버라이딩 -> 레이저 발사로 활성화 후 조정하여 쿨과 다시 되돌리기 조정
     public override void Fire()
     {
-        // 방향 조정
-        SetObjVec(shootedLaser);
-        // 시간이 지나 비활성화
-        StartCoroutine(ReturnObj(shootedLaser));
+        // 풀에서 꺼내기
+        GameObject popObj = GetPoolObj();
+        //활성화
+        popObj.SetActive(true);
+        // 움직임 + 시간이 지나 비활성화
+        StartCoroutine(ReturnObj(popObj));
         //쿨 타임
         StartCoroutine(FireCooldown());
     }
@@ -50,6 +52,7 @@ public class SpawnLaser : ParentSpawner
             v_elapsedTime += Time.deltaTime;
             yield return null;
         }
+        PushPoolObj(obj);
         obj.SetActive(false);
     }
 }
