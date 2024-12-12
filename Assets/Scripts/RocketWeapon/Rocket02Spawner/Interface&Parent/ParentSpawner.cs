@@ -5,56 +5,52 @@ using UnityEngine;
 
 public class ParentSpawner : MonoBehaviour
 {
+
+    [Header("Init Status")]
+    // 풀 사이즈
+    [SerializeField]
+    private int poolSize;
+    // 발사 쿨타임
+    [SerializeField]
+    private float coolTime;
+    //발사 가능 여부
+    [SerializeField]
+    private bool canFire;
+    // 오브젝트 생존 시간
+    [SerializeField]
+    private float objectLife;
+
     // 스폰할 프리팹
+    [Header("Shooting Object")]
     public GameObject prefabObj;
+
+    // 프리팹 스폰 위치 조정 값
+    [Header("Shooting Distance")]
+    [SerializeField]
+    private float distance;
 
     // 오브젝트 풀링 큐
     private Queue<GameObject> pool;
 
-    // 풀 사이즈
-    private int poolSize;
-    // 발사 쿨타임
-    private float fireCoolTime;
-    //발사 가능 여부
-    private bool canFire;
-    // 오브젝트 생존 시간
-    private float objectLife;
-
     // 오브젝트 풀 사이즈 설정
-    public virtual void SetPoolSize(int size)
-    {
-        poolSize = size;
-    }
-
-    // 오브젝트 쿨타임 설정
-    public virtual void SetCoolTime(float CoolTime)
-    {
-        fireCoolTime = CoolTime;
-    }
-
+    public virtual void SetPoolSize(int size) { poolSize = size; }
+    // 발사 쿨타임 설정
+    public virtual void SetCoolTime(float CoolTime) { coolTime = CoolTime; }
     // 발사 가능 여부 설정
-    public virtual void SetFireAva()
-    {
-        canFire = true;
-    }
+    public virtual void SetFireAva() { canFire = true; }
+    // 오브젝트 생존 시간 설정
+    public virtual void SetLifeTime(float time) { objectLife = time; }
+    // 발사 위치 설정
+    public virtual void SetDistance(float dist) { distance = dist; }
 
     // 발사 가능 여부 확인
-    public virtual bool GetFireBool()
-    {
-        return canFire; 
-    }
-
-    // 오브젝트 생존 시간 설정
-    public virtual void SetLifeTime(float time)
-    {
-        objectLife = time;
-    }
-
-    //오브젝트 생존 시간 확인
-    public virtual float GetLifeTime()
-    {
-        return objectLife;
-    }
+    public virtual bool GetFireBool() { return canFire; }
+    // 오브젝트 생존 시간 확인
+    public virtual float GetLifeTime() { return objectLife; }
+    // 발사 쿨타임 시간 확인
+    public virtual float GetCoolTime() { return coolTime; }
+    // 발사 위치 확인
+    public virtual float GetDistance() { return distance; }
 
     // 큐 생성
     public virtual void CreatePool()
@@ -87,11 +83,25 @@ public class ParentSpawner : MonoBehaviour
         StartCoroutine(FireCooldown());
     }
 
+    // 큐에서 꺼내기
+    public virtual GameObject GetPoolObj()
+    {
+        if (pool.Count > 0)
+        {
+            return pool.Dequeue();
+        }
+        else
+        {
+            return Instantiate(prefabObj);
+        }
+
+    }
+
     // 오브제의 위치 및 방향을 현재 스포너의 벡터에 맞게 설정
     public virtual void SetObjVec(GameObject obj)
     {
         obj.SetActive(true);
-        obj.transform.position = transform.position;
+        obj.transform.position = transform.position + transform.forward * GetDistance();
         obj.transform.rotation = transform.rotation;
     }
     // 오브제를 발사해서 움직임
@@ -101,25 +111,10 @@ public class ParentSpawner : MonoBehaviour
         shootedObj.Launch();
     }
 
-    // 큐에서 꺼내기
-    public virtual GameObject GetPoolObj()
-    {
-        if (pool.Count > 0)
-        {
-            Debug.Log("get");
-            return pool.Dequeue();
-        }
-        else
-        {
-            Debug.Log("create get");
-            return Instantiate(prefabObj);
-        }
-
-    }
     // 조건에 맞추어 다시 큐 풀링(넣기)
     public virtual IEnumerator ReturnObj(GameObject obj)
     {
-        yield return new WaitForSeconds(objectLife);
+        yield return new WaitForSeconds(GetLifeTime());
         pool.Enqueue(obj);
         obj.SetActive(false);
     }
@@ -128,7 +123,8 @@ public class ParentSpawner : MonoBehaviour
     public virtual IEnumerator FireCooldown()
     {
         canFire = false;
-        yield return new WaitForSeconds(fireCoolTime);
+        yield return new WaitForSeconds(GetCoolTime());
         canFire = true;
     }
+
 }

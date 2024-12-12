@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4808637891951762932}
+  - component: {fileID: 3656008774654452288}
   - component: {fileID: 1169272711981688370}
   - component: {fileID: 4370781048911209320}
   - component: {fileID: 2530065259314078421}
-  - component: {fileID: 3656008774654452288}
   m_Layer: 0
   m_Name: RoatetorBody
   m_TagString: Untagged
@@ -35,6 +35,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3656008774654452288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5843209798391022496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfe7209603fd574a99cb89347ff9879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSpeed: 2
+  verticalSpeed: 2
+  horizontalLimit: 60
+  verticalLimit: 60
 --- !u!33 &1169272711981688370
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108,19 +124,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3656008774654452288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5843209798391022496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbfe7209603fd574a99cb89347ff9879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalSpeed: 2
-  verticalSpeed: 2
-  horizontalLimit: 60
-  verticalLimit: 60
