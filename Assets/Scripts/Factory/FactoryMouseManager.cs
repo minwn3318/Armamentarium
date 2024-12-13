@@ -15,11 +15,12 @@ public class FactoryMouseManager : MonoBehaviour
 
     public Camera theCamera; //레이케스트
 
-    private Transform coreGearTransform;
+    private Transform player;
     // Start is called before the first frame update
     void Start()
     {
-        coreGearTransform = GameObject.FindWithTag("CoreGear").transform;
+        // Player 태그를 가진 게임오브젝트를 찾음
+        player = GameObject.FindWithTag("Player").transform;
         selectedBlock = blockNormal;
     }
 
@@ -32,6 +33,7 @@ public class FactoryMouseManager : MonoBehaviour
 
     void GetInput()
     {
+        // 마우스 좌클릭 (설치)
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = theCamera.ScreenPointToRay(Input.mousePosition);
@@ -58,12 +60,25 @@ public class FactoryMouseManager : MonoBehaviour
                 Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.forward, hitInfo.normal);
 
                 GameObject curblock = Instantiate(selectedBlock, spawnspot, spawnRotation);
+                
+                // 설치될 블럭의 부모를 player로 설정
+                curblock.transform.SetParent(player);
 
-                curblock.transform.SetParent(coreGearTransform);
-
+                // 위치 정보 -> 삭제하고 조인트를 이용하여 연결하는 방식으로 변경해야함
                 RegisterConnection(hitInfo.collider.gameObject, curblock);
             }
 
+        }
+        // 마우스 우클릭 (삭제)
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = theCamera.ScreenPointToRay (Input.mousePosition);
+            RaycastHit hitinfo;
+
+            if(Physics.Raycast(ray,out hitinfo))
+            {
+                Destroy(hitinfo.collider.gameObject); 
+            }
         }
     }
 
@@ -114,4 +129,5 @@ public class FactoryMouseManager : MonoBehaviour
             Debug.Log("Weapon cannon selected");
         }
     }
+
 }
