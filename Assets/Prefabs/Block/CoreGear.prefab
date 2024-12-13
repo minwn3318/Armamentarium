@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2426276405422630452}
   m_Layer: 0
   m_Name: CoreGear
-  m_TagString: Untagged
+  m_TagString: CoreGear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
