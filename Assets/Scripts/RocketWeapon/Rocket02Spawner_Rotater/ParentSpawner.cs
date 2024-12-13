@@ -96,6 +96,12 @@ public class ParentSpawner : MonoBehaviour
         }
 
     }
+    
+    // 큐에 넣기
+    public virtual void PushPoolObj(GameObject obj)
+    {
+        pool.Enqueue(obj);
+    }
 
     // 오브제의 위치 및 방향을 현재 스포너의 벡터에 맞게 설정
     public virtual void SetObjVec(GameObject obj)
@@ -115,7 +121,7 @@ public class ParentSpawner : MonoBehaviour
     public virtual IEnumerator ReturnObj(GameObject obj)
     {
         yield return new WaitForSeconds(GetLifeTime());
-        pool.Enqueue(obj);
+        PushPoolObj(obj);
         obj.SetActive(false);
     }
 
