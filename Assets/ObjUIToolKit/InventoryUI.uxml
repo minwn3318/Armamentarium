@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="box" style="position: absolute; width: 50%; height: 40%; background-color: rgb(255, 255, 255); align-items: center; justify-content: center;">
+        <ui:VisualElement name="Trad" style="width: 100%; height: 100%; background-color: rgba(89, 33, 33, 0.63); palign-items: center; justify-content: center;">
+            <ui:Label name="Count" text="C" style="font-size: 15px; top: 40%; left: 70%; width: 46px; -unity-text-align: upper-center;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
